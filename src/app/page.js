@@ -13,6 +13,7 @@ const landingPage = () => {
   const actualNumber = searchParams.get("id");
   useEffect(() => {
     if (actualNumber && actualNumber !== null) {
+      console.log(actualNumber);
       setQuery(actualNumber);
     }
   }, [actualNumber]);
@@ -34,7 +35,7 @@ const landingPage = () => {
     if (site === "chat") {
       window.location.href = "https://casino-chat.vercel.app";
     } else {
-      window.location.href = wppNumbers[query];
+      window.location.href = wppNumbers[query + 1];
     }
   };
 
