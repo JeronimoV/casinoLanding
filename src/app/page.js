@@ -1,95 +1,52 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-export default function Home() {
+import { useEffect } from "react";
+import styles from "./page.module.css";
+import dotenv from "dotenv";
+dotenv.config();
+
+const landingPage = () => {
+  const linkTo = (site) => {
+    if (site === "chat") {
+      window.location.href = "https://casino-chat.vercel.app";
+    } else {
+    }
+  };
+
+  const wppNumbers = [
+    process.env.NEXT_PUBLIC_NUMBER1,
+    process.env.NEXT_PUBLIC_NUMBER2,
+    process.env.NEXT_PUBLIC_NUMBER3,
+    process.env.NEXT_PUBLIC_NUMBER4,
+    process.env.NEXT_PUBLIC_NUMBER5,
+    process.env.NEXT_PUBLIC_NUMBER6,
+    process.env.NEXT_PUBLIC_NUMBER7,
+    process.env.NEXT_PUBLIC_NUMBER8,
+    process.env.NEXT_PUBLIC_NUMBER9,
+    process.env.NEXT_PUBLIC_NUMBER10,
+  ];
+
+  console.log(wppNumbers);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div className={styles.container}>
+      <div className={styles.backDiv}>
+        <div className={styles.blackWall} />
+        <img className={styles.background} src="newBack.jpg" />
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <img className={styles.logo} src="logo.png" />
+      <p className={styles.texto}>Envianos un mensaje para crear tu usuario</p>
+      <div className={styles.buttons}>
+        <button onClick={() => linkTo("whatsapp")} className={styles.button1}>
+          <img src="https://www.svgrepo.com/show/452133/whatsapp.svg" />
+          Whatsapp
+        </button>
+        <button onClick={() => linkTo("chat")} className={styles.button2}>
+          <img src="https://www.svgrepo.com/show/510890/chat-circle.svg" /> Chat
+        </button>
       </div>
+    </div>
+  );
+};
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default landingPage;
