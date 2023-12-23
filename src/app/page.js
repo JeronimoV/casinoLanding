@@ -1,17 +1,21 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import dotenv from "dotenv";
+import { useSearchParams } from "next/navigation";
 dotenv.config();
 
 const landingPage = () => {
-  const linkTo = (site) => {
-    if (site === "chat") {
-      window.location.href = "https://casino-chat.vercel.app";
-    } else {
+  const [query, setQuery] = useState();
+
+  const searchParams = useSearchParams();
+  const actualNumber = searchParams.get("id");
+  useEffect(() => {
+    if (actualNumber && actualNumber !== null) {
+      setQuery(actualNumber);
     }
-  };
+  }, [actualNumber]);
 
   const wppNumbers = [
     process.env.NEXT_PUBLIC_NUMBER1,
@@ -26,7 +30,17 @@ const landingPage = () => {
     process.env.NEXT_PUBLIC_NUMBER10,
   ];
 
-  console.log(wppNumbers);
+  const linkTo = (site) => {
+    if (site === "chat") {
+      window.location.href = "https://casino-chat.vercel.app";
+    } else {
+      window.location.href = wppNumbers[query];
+    }
+  };
+
+  if (!actualNumber || actualNumber === null || query > 10 || query < 1) {
+    return <p>Error</p>;
+  }
 
   return (
     <div className={styles.container}>
